@@ -6,6 +6,7 @@ import io.restassured.http.ContentType;
 import model.unknown.ResponseArray;
 import model.user.Response;
 import org.junit.jupiter.api.Test;
+
 import static com.CustomSpec.spec;
 import static io.restassured.RestAssured.*;
 
@@ -32,6 +33,25 @@ public class RestTest {
                 .get("https://reqres.in/api/users/2")
                 .then()
                 .log().headers().log().body();
+    }
+
+    @Test
+    public void sendBody() {
+        String data = "{\n" +
+                "\"name\": \"Bob\",\n" +
+                "\"job\": \"worker\"" +
+                "\n}";
+
+        given()
+                .filter(new AllureRestAssured())
+                .contentType(ContentType.JSON)
+                .log().uri()
+                .body(data)
+                .when()
+                .post("https://reqres.in/api/users")
+                .then()
+                .statusCode(201)
+                .log().body();
     }
 
     @Test
@@ -78,7 +98,7 @@ public class RestTest {
                 .when()
                 .get("/api/users/2")
                 .then()
-                . spec(spec().expectedResponseUser())
+                .spec(spec().expectedResponseUser())
                 .extract().as(Response.class);
         System.out.println(response.getData().getEmail());
     }
@@ -94,7 +114,6 @@ public class RestTest {
                 .extract().as(ResponseArray.class);
         System.out.println(responseArray.getData().get(2).getPantoneValue());
     }
-
 
 
 }

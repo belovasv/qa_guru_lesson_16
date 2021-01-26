@@ -1,4 +1,4 @@
-package model.unknown;
+package model.color;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

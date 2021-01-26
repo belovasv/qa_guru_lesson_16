@@ -1,13 +1,13 @@
-package com;
+package restTest;
 
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-import model.unknown.ResponseArray;
+import model.color.ResponseArray;
 import model.user.Response;
 import org.junit.jupiter.api.Test;
 
-import static com.CustomSpec.spec;
+import static restTest.CustomSpec.spec;
 import static io.restassured.RestAssured.*;
 
 public class RestTest {
